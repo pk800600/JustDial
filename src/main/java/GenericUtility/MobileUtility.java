@@ -179,5 +179,9 @@ public class MobileUtility extends InstanceClass {
 	}
 	
 	
-
+	public void tapAction(int x, int y) throws InterruptedException {
+		TouchAction tc=new TouchAction(driver);
+		Thread.sleep(3000);
+		tc.tap(x, y).perform();
+	}
 }

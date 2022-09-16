@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Assingment.Assignment2">
+      <class name="Assingment.AssignmentBookFlightTest">
         <methods>
-          <include name="LaunchApp"/>
-          <include name="closeApp"/>
           <include name="closeserver"/>
-          <include name="AppiumAssignment"/>
+          <include name="bookFlightAssignment"/>
+          <include name="closeApp"/>
+          <include name="LaunchApp"/>
           <include name="laundServer"/>
         </methods>
-      </class> <!-- Assingment.Assignment2 -->
+      </class> <!-- Assingment.AssignmentBookFlightTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

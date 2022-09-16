@@ -1,21 +1,18 @@
 package JustDialObjectRepository;
 
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.github.dockerjava.api.model.Driver;
-
-import GenericUtility.Dream11BaseClass;
-import GenericUtility.InstanceClass;
-import GenericUtility.MobileUtility;
+import GenericUtility.BaseClass;
+import GenericUtility.IpathConstant;
+import GenericUtility.MobileExcelUtility;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
-public class VerifyNavigationBar extends Dream11BaseClass{
+public class BookFlight {
 	
-	public VerifyNavigationBar(AndroidDriver driver) {
+	public BookFlight(AndroidDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -24,7 +21,7 @@ public class VerifyNavigationBar extends Dream11BaseClass{
 	@FindBy(xpath = "//android.widget.Button[@text='Round Trip']") private WebElement roundTrip;
 	@FindBy(xpath = "//android.widget.TextView[@resource-id='com.justdial.search:id/from_city']") private WebElement from;
 	@FindBy(xpath = "//android.widget.MultiAutoCompleteTextView[@text='Search']") private WebElement search;
-	@FindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.justdial.search:id/cities_Lay']") private WebElement enterCity;
+	@FindBy(xpath = "//android.widget.TextView[@resource-id='com.justdial.search:id/city_airport']") private WebElement enterCity;
 	@FindBy(xpath = "//android.widget.TextView[@resource-id='com.justdial.search:id/to_city']") private WebElement to;
 	@FindBy(xpath = "//android.widget.MultiAutoCompleteTextView[@text='Search']") private WebElement searchTo;
 	@FindBy(xpath = "//android.widget.TextView[@resource-id='com.justdial.search:id/city_airport']") private WebElement searcToClick;
@@ -41,20 +38,30 @@ public class VerifyNavigationBar extends Dream11BaseClass{
 	
 	//business logic
 	
-	public void roundTripTravel(String fromDestination, String toDestination,AndroidDriver<WebElement> driver) throws InterruptedException {
+	public void roundTripTravel(MobileExcelUtility mobileExcelUtility,    AndroidDriver<WebElement> driver) throws InterruptedException {
 		travel.click();
+		Thread.sleep(3000);
 		flights.click();
 		roundTrip.click();
 		from.click();
-		search.sendKeys(fromDestination);
+		mobileExcelUtility.initializeExcelFile(IpathConstant.MOBILEEXCELFILE);
+		search.sendKeys(mobileExcelUtility.getDataFromExcel("Bookflight", 2, 1));
 		enterCity.click();
 		to.click();
-		searchTo.sendKeys(toDestination);
+		searchTo.sendKeys(mobileExcelUtility.getDataFromExcel("Bookflight", 2, 2));
 		searcToClick.click();
 		departureDate.click();
 		departureDateSelect.click();
 		returnDateSelect.click();
 		searchFlight.click();
+		
+		Thread.sleep(10000);
+		TouchAction tc= new TouchAction(driver);
+		tc.tap(51, 495).perform();
+		Thread.sleep(3000);
+		tc.tap(619, 504).perform();
+		Thread.sleep(3000);
+		tc.tap(784, 2014).perform();
 		
 		
 		//driver.tap(1, 134, 755,	500);

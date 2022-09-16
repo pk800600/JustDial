@@ -14,7 +14,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 
-public class Dream11BaseClass extends InstanceClass {
+public class BaseClass extends InstanceClass {
 		
 	@BeforeClass
 	public void laundServer() {
